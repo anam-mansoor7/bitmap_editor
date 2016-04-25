@@ -3,8 +3,8 @@ require 'pry'
 
 describe Image do
 	before :each do
-    @row = 6
-    @col = 6
+    @row = 3
+    @col = 3
     @image = Image.new(@row, @col)
 	end 
 
@@ -13,11 +13,11 @@ describe Image do
       @image.should be_an_instance_of Image
     end
 
-    it "should have 6 rows" do
+    it "should have 3 rows" do
       @image.row.should eq(@row)
     end
 
-    it "should have 6 cols" do
+    it "should have 3 cols" do
       @image.col.should eq(@col)
     end
 
@@ -26,6 +26,13 @@ describe Image do
       @image.bitmap[0].count.should eql(@row)
       @image.bitmap[1].count.should eql(@col)
     end
-
 	end
+
+  describe "#print" do
+    it "should print the bitmap" do
+      new_line = "\n"
+      output = 'OOO' + new_line + 'OOO' + new_line + 'OOO' + new_line
+      STDOUT.should_receive(:puts).with(output)
+    end
+  end
 end

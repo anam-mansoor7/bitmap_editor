@@ -8,7 +8,6 @@ class Image
     @bitmap = Array.new(@row) {Array.new(@col,'O')}   
   end
 
-
   def print
     @bitmap.each do |r|
       puts r.each { |p| p }.join("")
