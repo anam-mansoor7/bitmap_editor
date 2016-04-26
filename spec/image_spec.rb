@@ -60,12 +60,15 @@ describe Image do
     end
   end
 
-  describe "is_color_valid?" do
+  describe "#is_color_valid?" do
     it "should return true for valid input" do
-      @image
+      invalid_color = "foo"
+      @image.send(:is_color_valid?,invalid_color)
     end
 
     it "should false for invalid input" do
+      valid_color = "A"
+      @image.send(:is_color_valid?, valid_color)
     end
   end
 end
