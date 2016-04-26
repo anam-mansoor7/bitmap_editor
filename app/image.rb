@@ -1,6 +1,7 @@
 class Image
   attr_accessor :row, :col, :bitmap
   SUCCESS_MESSAGE = "Bitmap succesfully updated"
+  ERROR_MESSAGE = "Error updating bitmap "
 
 	def initialize(row, col)
     @row = row
@@ -16,12 +17,15 @@ class Image
   end
 
   def color_pixel(row, col, color)
-    if check_bitmap_bounds(row, col)
+    if check_bitmap_bounds(row, col) and is_color_valid?(color)
       @bitmap[row][col] = color
       SUCCESS_MESSAGE
     else
-      "row or column is out of bounds"
+      ERROR_MESSAGE
     end
+  end
+
+  def draw_vertical_segment(row, col, color)
   end
 
   private

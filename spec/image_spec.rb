@@ -38,13 +38,19 @@ describe Image do
 
   describe "#color_pixel" do
     it "should color the pixel with specified color" do
-      @image.color_pixel(2,2,"A")
+      success_message = @image.color_pixel(2,2,"A")
       expect(@image.bitmap[2][2]).to eql("A")
+      expect(success_message).to eq(Image::SUCCESS_MESSAGE) 
     end
 
     it "should return an error message if row and col are out of bounds" do
       error_message = @image.color_pixel(3,3,"A")
-      expect(error_message).to eq("row or column is out of bounds") 
+      expect(error_message).to eq(Image::ERROR_MESSAGE) 
+    end
+
+    it "should return an error message if color is invalid" do
+      error_message = @image.color_pixel(3,3,"invalid_color")
+      expect(error_message).to eq(Image::ERROR_MESSAGE) 
     end
   end
 
