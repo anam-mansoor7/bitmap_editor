@@ -10,21 +10,21 @@ describe Image do
 
 	describe "#new" do
     it "takes two parameters and returns a image object" do
-      @image.should be_an_instance_of Image
+      expect(@image).to be_an_instance_of(Image)
     end
 
     it "should have 3 rows" do
-      @image.row.should eq(@row)
+      expect(@image.row).to eq(@row)
     end
 
     it "should have 3 cols" do
-      @image.col.should eq(@col)
+      expect(@image.col).to eq(@col)
     end
 
     it "should have row * col bitmap 2D array " do
       array = Array.new(@row) {Array.new(@col)} 
-      @image.bitmap[0].count.should eql(@row)
-      @image.bitmap[1].count.should eql(@col)
+      expect(@image.bitmap[0].count).to eql(@row)
+      expect(@image.bitmap[1].count).to eql(@col)
     end
 	end
 
@@ -32,7 +32,40 @@ describe Image do
     it "should print the bitmap" do
       new_line = "\n"
       output = 'OOO' + new_line + 'OOO' + new_line + 'OOO' + new_line
-      STDOUT.should_receive(:puts).with(output)
+      expect { @image.print }.to output(output).to_stdout
+    end
+  end
+
+  describe "#color_pixel" do
+    it "should color the pixel with specified color" do
+      @image.color_pixel(2,2,"A")
+      expect(@image.bitmap[2][2]).to eql("A")
+    end
+
+    it "should return an error message if row and col are out of bounds" do
+      error_message = @image.color_pixel(3,3,"A")
+      expect(error_message).to eq("row or column is out of bounds") 
+    end
+  end
+
+  describe "#check_bitmap_bounds" do
+    it "shoud return false if row and col is out of bounds" do
+      bitmap_bound_check = @image.send(:check_bitmap_bounds, 3, 4)   
+      expect(bitmap_bound_check).to be false 
+    end
+
+    it "shoud return true if row and col is valid" do
+      bitmap_bound_check = @image.send(:check_bitmap_bounds, 2, 2)   
+      expect(bitmap_bound_check).to be true 
+    end
+  end
+
+  describe "is_color_valid?" do
+    it "should return true for valid input" do
+      @image
+    end
+
+    it "should false for invalid input" do
     end
   end
 end
