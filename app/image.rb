@@ -32,6 +32,12 @@ class Image
     end
   end
 
+  def draw_horizental_segment(row, col_start, col_end, color)
+    (col_start..col_end).each do |col|
+      @bitmap[row][col] = color
+    end
+  end
+
   private
     #TODO: this range will change to between 1 to row inclusive
     # after setting the coordinates
