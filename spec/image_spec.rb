@@ -85,4 +85,12 @@ describe Image do
       expect(@image.bitmap[1][2]).to eql('A')
     end
   end
+
+  describe "#draw_horizental_segment" do
+    it "horizontal segment of colour C in row Y between columns X1 and X2 " do
+
+      expect{@image.draw_horizental_segment(2, 1, 2, "A")}.to change{@image.bitmap[2][1]}.from('O').to('A')
+      expect(@image.bitmap[1][2]).to eql('A')
+    end
+  end
 end
