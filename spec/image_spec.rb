@@ -90,6 +90,7 @@ describe Image do
       expect(image.bitmap[2][2]).to eql('A')
     end
   end
+  
   describe "#clear_bitmap" do
     it "should clear the bitmap" do
       white_bitmap = Array.new(3) {Array.new(3,'O')}
