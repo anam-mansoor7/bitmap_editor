@@ -8,7 +8,7 @@ class Image
     @row = row
     @col = col
     color = 'O'
-    @bitmap = Array.new(@row) {Array.new(@col,'O')}   
+    set_bitmap   
   end
 
   def print
@@ -38,7 +38,14 @@ class Image
     end
   end
 
+  def clear_bitmap
+    set_bitmap
+  end
+
   private
+    def set_bitmap
+      @bitmap = Array.new(@row) {Array.new(@col,'O')}   
+    end
     #TODO: this range will change to between 1 to row inclusive
     # after setting the coordinates
     def check_bitmap_bounds(row, col)
