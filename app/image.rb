@@ -1,4 +1,5 @@
 class Image
+  #TODO: fix pixel cordinates bitmap starts from 1 not 0
   attr_accessor :row, :col, :bitmap
   SUCCESS_MESSAGE = "Bitmap succesfully updated"
   ERROR_MESSAGE = "Error updating bitmap "
@@ -25,12 +26,25 @@ class Image
     end
   end
 
-  def draw_vertical_segment(row, col, color)
+  def draw_vertical_segment(col, row_start, row_end, color)
+    (row_start..row_end).each do |row|
+      @bitmap[row][col] = color
+    end
   end
 
   private
+    #TODO: this range will change to between 1 to row inclusive
+    # after setting the coordinates
     def check_bitmap_bounds(row, col)
-      row < @row and col < @col
+      check_row_bound(row) && check_col_bound(col)
+    end
+
+    def check_row_bound(row)
+      (0 <= row) && (row < @row)
+    end
+
+    def check_col_bound(col)
+      (0 <= col) && (col < @col)
     end
 
     def is_color_valid?(color)

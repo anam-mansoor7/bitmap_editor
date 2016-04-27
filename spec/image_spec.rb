@@ -77,4 +77,12 @@ describe Image do
       @image.send(:is_color_valid?, valid_color)
     end
   end
+
+  describe "#draw_vertical_segment" do
+    it "should draw a vertical segment of colour C in column X between rows Y1 and Y2 " do
+
+      expect{@image.draw_vertical_segment(2, 1, 2, "A")}.to change{@image.bitmap[2][2]}.from('O').to('A')
+      expect(@image.bitmap[1][2]).to eql('A')
+    end
+  end
 end
