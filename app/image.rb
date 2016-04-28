@@ -46,18 +46,8 @@ class Image
     def set_bitmap
       @bitmap = Array.new(@row) {Array.new(@col,'O')}   
     end
-    #TODO: this range will change to between 1 to row inclusive
-    # after setting the coordinates
+
     def check_bitmap_bounds(row, col)
-      check_row_bound(row) && check_col_bound(col)
-    end
-
-    def check_row_bound(row)
-      (0 <= row) && (row < @row)
-      # row.between?(0, @row)
-    end
-
-    def check_col_bound(col)
-      (0 <= col) && (col < @col)
+      row.between?(0, @row - 1) && col.between?(0, @col - 1)
     end
 end
