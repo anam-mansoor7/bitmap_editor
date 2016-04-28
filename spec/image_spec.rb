@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe Image do
   let(:row) {3}
@@ -61,18 +60,6 @@ describe Image do
     it "shoud return true if row and col is valid" do
       bitmap_bound_check = image.send(:check_bitmap_bounds, 2, 2)   
       expect(bitmap_bound_check).to be true 
-    end
-  end
-
-  describe "#is_color_valid?" do
-    it "should return true for valid input" do
-      invalid_color = "foo"
-      image.send(:is_color_valid?,invalid_color)
-    end
-
-    it "should false for invalid input" do
-      valid_color = "A"
-      image.send(:is_color_valid?, valid_color)
     end
   end
 

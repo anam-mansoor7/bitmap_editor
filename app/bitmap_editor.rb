@@ -3,6 +3,7 @@ class BitmapEditor
 
   def run
     @running = true
+    #TODO: fix range in regex
     @image = []
     puts 'type ? for help'
     while @running
