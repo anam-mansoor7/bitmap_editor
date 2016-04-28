@@ -1,5 +1,4 @@
 class Image
-  #TODO: fix pixel cordinates bitmap starts from 1 not 0
   attr_accessor :row, :col, :bitmap
   SUCCESS_MESSAGE = "Bitmap succesfully updated"
   ERROR_MESSAGE = "Error: row or column is out of bound "
@@ -20,21 +19,37 @@ class Image
   def color_pixel(row, col, color)
     if check_bitmap_bounds(row, col) 
       @bitmap[row][col] = color
-      SUCCESS_MESSAGE
+      puts SUCCESS_MESSAGE
     else
-      ERROR_MESSAGE
+      puts ERROR_MESSAGE
     end
   end
 
-  def draw_vertical_segment(col, row_start, row_end, color)
-    (row_start..row_end).each do |row|
-      @bitmap[row][col] = color
+  def draw_vertical_segment(col, row1, row2, color)
+    row_start = [row1, row2].min
+    row_end   = [row1, row2].max
+
+    if check_bitmap_bounds(row_start, col) 
+      (row_start..row_end).each do |row|
+        @bitmap[row][col] = color
+      end
+      puts SUCCESS_MESSAGE
+    else
+      puts ERROR_MESSAGE
     end
   end
 
-  def draw_horizental_segment(col_start, col_end, row, color)
-    (col_start..col_end).each do |col|
-      @bitmap[row][col] = color
+  def draw_horizental_segment(col1, col2, row, color)
+    col_start = [col1, col2].min
+    col_end   = [col1, col2].max
+
+    if check_bitmap_bounds(row, col_end) 
+      (col_start..col_end).each do |col|
+        @bitmap[row][col] = color
+      end
+      puts SUCCESS_MESSAGE
+    else
+      puts ERROR_MESSAGE
     end
   end
 

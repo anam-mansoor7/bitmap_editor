@@ -1,5 +1,4 @@
 require_relative 'image'
-
 class BitmapEditor
 
 # TODO:
@@ -29,13 +28,13 @@ class BitmapEditor
           create_image(params[2], params[1])
         when /L (\d) (\d) ([A-Z])\z/
           #L X Y C - Colours the pixel (X,Y) with colour C  
-          @image.color_pixel(params[3], params[2], params[4])
+          @image.color_pixel(params[2], params[1], params[3])
         when /V (\d) (\d) (\d) ([A-Z])\z/ 
           #V X Y1 Y2 C - Draw a vertical segment of colour C in column X between rows Y1 and Y2
-          @image.draw_vertical_segment(params[2], params[3], params[4], params[5])
+          @image.draw_vertical_segment(params[1], params[2], params[3], params[4])
         when /H (\d) (\d) (\d) ([A-Z])\z/
           # H X1 X2 Y C - Draw a horizontal segment of colour C in row Y between columns X1 and X2
-          @image.draw_horizental_segment(params[2], params[3], params[4], params[5])          
+          @image.draw_horizental_segment(params[1], params[2], params[3], params[4])          
         else
           puts 'unrecognised command :('
       end
@@ -60,8 +59,10 @@ X - Terminate the session"
     end
 
     def create_image(row, col)
-      if valid_bounds?(params[2], params[3])
-        @image = Image.new(params[3], params[2])
+      row = row + 1
+      col = col + 1
+      if validate_range?(row, col)
+        @image = Image.new(row, col)
       else
         puts "Error: Row and column needs to be between 1 and 250"
       end 
@@ -75,12 +76,12 @@ X - Terminate the session"
 
     def image_exists?
       error_message = "Error: Image does not exist. Create it using I command"  
-      @image.is_a?(Image) ? true : puts error_message
+      @image.is_a?(Image) ? true : (puts error_message)
     end
 
     def validate_range?(row, col)
       error_message = "Error: The range must be between 1 and 250"  
-      (row.between?(0, 249) && col.between?(0, 249)) ? true : 
+      (row.between?(0, 249) && col.between?(0, 249)) ? true : (puts error_message)
     end
     
     def is_capital_letter(char)
