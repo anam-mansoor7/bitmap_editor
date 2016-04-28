@@ -1,11 +1,6 @@
 require_relative 'image'
 class BitmapEditor
 
-# TODO:
-# 1. set coordinates = -1 of actual
-# 2. error checks btw 1 to 250
-# 3. error check the image exist before calling commands: S, L, V, H 
-# Maybe put a color is invalid error
   def run
     @running = true
     @image = []
