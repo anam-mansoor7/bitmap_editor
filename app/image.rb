@@ -18,7 +18,7 @@ class Image
   end
 
   def color_pixel(row, col, color)
-    if check_bitmap_bounds(row, col) and is_color_valid?(color)
+    if check_bitmap_bounds(row, col) 
       @bitmap[row][col] = color
       SUCCESS_MESSAGE
     else
@@ -58,9 +58,5 @@ class Image
 
     def check_col_bound(col)
       (0 <= col) && (col < @col)
-    end
-
-    def is_color_valid?(color)
-      !((color =~ /^[A-Z]$/).nil?)
     end
 end
