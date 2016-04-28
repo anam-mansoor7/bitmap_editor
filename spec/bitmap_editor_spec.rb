@@ -1,7 +1,6 @@
 require 'spec_helper'
 #incomplete test cases
 describe BitmapEditor do
-
   let(:bitmap_editor) {BitmapEditor.new}
 
 	describe "#create_image" do
@@ -14,25 +13,24 @@ describe BitmapEditor do
 
   describe "#is_capital_letter" do
     it "should return true for valid input" do
-      invalid_color = "f"
-      bitmap_editor.send(:is_capital_letter, invalid_color)
+      expect(bitmap_editor.send(:is_capital_letter, "A")).to be true
     end
 
     it "should return false for invalid input" do
-      valid_color = "A"
-      bitmap_editor.send(:is_capital_letter, valid_color)
+      expect(bitmap_editor.send(:is_capital_letter, "f")).to be false
     end
   end
 
-   describe "#image_exists?" do
+  describe "#image_exists?" do
     it "should return true if image exists" do
-      invalid_color = "f"
-      bitmap_editor.send(:image_exists?, invalid_color)
+    	bitmap_editor.send(:create_image, 2, 3)
+
+      image_check = bitmap_editor.send(:image_exists?)   
+      expect(image_check).to be true 
     end
 
     it "should return false if image does not exist" do
-      valid_color = "A"
-      bitmap_editor.send(:image_exists?, valid_color)
+      expect(bitmap_editor.send(:image_exists?)).to be_falsey 
     end
   end
 end
