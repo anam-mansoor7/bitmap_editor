@@ -33,4 +33,16 @@ describe BitmapEditor do
       expect(bitmap_editor.send(:image_exists?)).to be_falsey 
     end
   end
+
+  describe "#validate_range?" do
+    it "should return true if range is valid" do
+
+      image_check = bitmap_editor.send(:validate_range?, 2, 60 )   
+      expect(image_check).to be true 
+    end
+
+    it "should return falsey if range is invalid" do
+      expect(bitmap_editor.send(:validate_range?, 2, 677)).to be_falsey 
+    end
+  end
 end
