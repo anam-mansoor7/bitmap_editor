@@ -2,7 +2,7 @@ class Image
   #TODO: fix pixel cordinates bitmap starts from 1 not 0
   attr_accessor :row, :col, :bitmap
   SUCCESS_MESSAGE = "Bitmap succesfully updated"
-  ERROR_MESSAGE = "Error updating bitmap "
+  ERROR_MESSAGE = "Error: row or column is out of bound "
 
 	def initialize(row, col)
     @row = row 
