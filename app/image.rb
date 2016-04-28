@@ -5,8 +5,8 @@ class Image
   ERROR_MESSAGE = "Error updating bitmap "
 
 	def initialize(row, col)
-    @row = row
-    @col = col
+    @row = row 
+    @col = col 
     color = 'O'
     set_bitmap   
   end
@@ -32,7 +32,7 @@ class Image
     end
   end
 
-  def draw_horizental_segment(row, col_start, col_end, color)
+  def draw_horizental_segment(col_start, col_end, row, color)
     (col_start..col_end).each do |col|
       @bitmap[row][col] = color
     end
@@ -54,6 +54,7 @@ class Image
 
     def check_row_bound(row)
       (0 <= row) && (row < @row)
+      # row.between?(0, @row)
     end
 
     def check_col_bound(col)
