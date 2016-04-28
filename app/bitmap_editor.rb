@@ -20,16 +20,16 @@ class BitmapEditor
           @image.print if image_exists?
         when 'C'
           message = @image.clear_bitmap if image_exists?
-        when /I (\d) (\d)\z/ 
+        when /I (\d{1,3}) (\d{1,3})\z/ 
           #I M N - Create a new M x N image
           create_image(params[2], params[1])
-        when /L (\d) (\d) ([A-Z])\z/
+        when /L (\d{1,3}) (\d{1,3}) ([A-Z])\z/
           #L X Y C - Colours the pixel (X,Y) with colour C  
           message = @image.color_pixel(params[2], params[1], params[3]) if image_exists?
-        when /V (\d) (\d) (\d) ([A-Z])\z/ 
+        when /V (\d{1,3}) (\d{1,3}) (\d{1,3}) ([A-Z])\z/ 
           #V X Y1 Y2 C - Draw a vertical segment of colour C in column X between rows Y1 and Y2
           message = @image.draw_vertical_segment(params[1], params[2], params[3], params[4]) if image_exists?
-        when /H (\d) (\d) (\d) ([A-Z])\z/
+        when /H (\d{1,3}) (\d{1,3}) (\d{1,3}) ([A-Z])\z/
           # H X1 X2 Y C - Draw a horizontal segment of colour C in row Y between columns X1 and X2
           message = @image.draw_horizental_segment(params[1], params[2], params[3], params[4]) if image_exists?          
         else
@@ -61,8 +61,6 @@ X - Terminate the session"
       col = col + 1
       if validate_range?(row, col)
         @image = Image.new(row, col)
-      else
-        puts "Error: Row and column needs to be between 1 and 250"
       end 
     end
 
