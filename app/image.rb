@@ -19,9 +19,9 @@ class Image
   def color_pixel(row, col, color)
     if check_bitmap_bounds(row, col) 
       @bitmap[row][col] = color
-      puts SUCCESS_MESSAGE
+      SUCCESS_MESSAGE
     else
-      puts ERROR_MESSAGE
+      ERROR_MESSAGE
     end
   end
 
@@ -33,9 +33,9 @@ class Image
       (row_start..row_end).each do |row|
         @bitmap[row][col] = color
       end
-      puts SUCCESS_MESSAGE
+      SUCCESS_MESSAGE
     else
-      puts ERROR_MESSAGE
+      ERROR_MESSAGE
     end
   end
 
@@ -47,14 +47,15 @@ class Image
       (col_start..col_end).each do |col|
         @bitmap[row][col] = color
       end
-      puts SUCCESS_MESSAGE
+      SUCCESS_MESSAGE
     else
-      puts ERROR_MESSAGE
+      ERROR_MESSAGE
     end
   end
 
   def clear_bitmap
     set_bitmap
+    SUCCESS_MESSAGE
   end
 
   private

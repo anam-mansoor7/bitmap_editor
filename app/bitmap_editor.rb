@@ -14,6 +14,7 @@ class BitmapEditor
       print '> '
       input = gets.chomp
       params = parse_input(input)
+      message = ""
       case input
         when '?'
           show_help
@@ -22,22 +23,23 @@ class BitmapEditor
         when 'S'
           @image.print if image_exists?
         when 'C'
-          @image.clear_bitmap if image_exists?
+          message = @image.clear_bitmap if image_exists?
         when /I (\d) (\d)\z/ 
           #I M N - Create a new M x N image
           create_image(params[2], params[1])
         when /L (\d) (\d) ([A-Z])\z/
           #L X Y C - Colours the pixel (X,Y) with colour C  
-          @image.color_pixel(params[2], params[1], params[3])
+          message = @image.color_pixel(params[2], params[1], params[3])
         when /V (\d) (\d) (\d) ([A-Z])\z/ 
           #V X Y1 Y2 C - Draw a vertical segment of colour C in column X between rows Y1 and Y2
-          @image.draw_vertical_segment(params[1], params[2], params[3], params[4])
+          message = @image.draw_vertical_segment(params[1], params[2], params[3], params[4])
         when /H (\d) (\d) (\d) ([A-Z])\z/
           # H X1 X2 Y C - Draw a horizontal segment of colour C in row Y between columns X1 and X2
-          @image.draw_horizental_segment(params[1], params[2], params[3], params[4])          
+          message = @image.draw_horizental_segment(params[1], params[2], params[3], params[4])          
         else
           puts 'unrecognised command :('
       end
+      puts message unless message.empty?
     end
   end
 
